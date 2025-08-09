@@ -1,0 +1,9 @@
+transcript.pdf
+
+embeds/
+
+.vscode/
+
+__pycache__/
+
+*.code-workspace
