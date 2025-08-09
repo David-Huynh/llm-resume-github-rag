@@ -20,7 +20,7 @@ def embed_query(query):
     tokenizer.pad_token = tokenizer.eos_token
     model = AutoModel.from_pretrained("bigcode/starencoder").to(device)
     model.eval()
-    inputs = tokenizer(query, padding=True, truncation=True, return_tensors="pt").to(device)
+    inputs = tokenizer(query, padding=True, truncation=True, max_length=1024, return_tensors="pt").to(device)
     with torch.no_grad():
         outputs = model(**inputs)
         emb = outputs.last_hidden_state[:,0,:].cpu().numpy()

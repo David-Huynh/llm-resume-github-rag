@@ -39,6 +39,8 @@ def extract_text_from_pdf(pdf_path):
 def build_requirement_extraction_prompt(full_text):
     prompt = f"""
     You are an expert job analyst. Extract and list the job requirements, qualifications and anything relevant from the following job posting text.
+    Make sure to include specific skills, technologies, and any other relevant information that would be useful for a candidate to know.
+    Ensure that you do not include any personal opinions or irrelevant information. Make it concise and clear.
 
     Job Posting Text:
     {full_text}
@@ -85,6 +87,8 @@ if __name__ == "__main__":
         'content': job_description,
     },
     ])
+    print("Job Description:")
+    print(job_description_response.message.content)
 
     # Extract text from transcript PDF
     transcript_pdf_path = args.transcript
@@ -98,6 +102,7 @@ if __name__ == "__main__":
                                                            './embeds/metadata.txt', 
                                                            k=args.retrieve), 
                                  transcript)
+    print(prompt)
     print("Generating personalized resume...")
     response: ChatResponse = chat(model='gwen3-4b-instruct-ctx-8k', messages=[
     {

@@ -147,8 +147,8 @@ def build_embeddings_index_streaming(root_dir, save_folder):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Streaming embedding & indexing with StarEncoder")
-    parser.add_argument("root_dir", help="Directory containing code projects")
-    parser.add_argument("save_folder", help="Folder to save index and metadata")
+    parser.add_argument("--root_dir", help="Directory containing code projects")
+    parser.add_argument("--save_folder", help="Folder to save index and metadata")
     args = parser.parse_args()
 
     build_embeddings_index_streaming(args.root_dir, args.save_folder)
